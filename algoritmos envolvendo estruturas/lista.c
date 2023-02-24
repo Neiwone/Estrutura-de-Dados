@@ -2,9 +2,7 @@
 #include <stdlib.h>
 
 typedef struct elemento{
-    //valor do elemento
     int valor;
-    //ponteiro para o proximo elemento
     struct elemento *proximo;
 };
 
@@ -49,24 +47,26 @@ void printar(struct elemento *lista)
 }
 
 //funcão para remover um elemento da lista
-/*void remover_elemento(struct elemento *lista, int numero_desejado)
+void remover_elemento(struct elemento *lista, int numero_desejado)
 {
+    struct elemento *temporario = NULL;
+    struct elemento *auxiliar = lista;
 
-    struct elemento *temporario = lista;
-    while (temporario != NULL && temporario->valor != numero_desejado) temporario = temporario->proximo;
-    
-    if (temporario != NULL)
+    while (auxiliar->proximo != NULL) 
     {
-        free(temporario);
-        remover_elemento(lista, numero_desejado);
-        return;
-        
+        if(auxiliar->proximo->valor == numero_desejado) break;
+        auxiliar = auxiliar->proximo;
     }
-    printf("Numero %d nao encontrado :(\n", numero_desejado);
+    if (auxiliar->proximo != NULL)
+    {   
+        temporario = auxiliar->proximo;
+        auxiliar->proximo = temporario->proximo;
+        return;
+    }
+    printf("numero %d nao encontrado :(\n", numero_desejado);
     return;
-    
 }
-*/
+
 
 //funcão para calcular o tamanho da lista
 int tamanho(struct elemento *lista)
@@ -122,8 +122,8 @@ void procurar_elemento(struct elemento * lista, int numero_desejado)
     struct elemento * temporario = lista;
     while (temporario != NULL && temporario->valor != numero_desejado) temporario = temporario->proximo;
     
-    if (temporario != NULL) printf("Numero %d encontrado!\n", numero_desejado);
-    else printf("Numero %d nao encontrado :(\n", numero_desejado);
+    if (temporario != NULL) printf("Numero %d encontrado!\n", temporario->valor);
+    else printf("Numero %d nao encontrado :(\n", temporario->valor);
 
 }
 
@@ -174,14 +174,15 @@ int main()
     int escolha;
     printf("1.Tamanho da lista\n");
     printf("2.Conferir se certo numero eh um membro da lista\n");
-    printf("3.Mostar qual elemento da lista eh a cabeca\n");
-    printf("4.Remover determinado elemetno da lista\n");
+    printf("3.Retornar o elemento cabeca da lista \n");
+    printf("4.Remover determinado elemento da lista\n");
     printf("5.Retornar a cauda da lista\n");
     printf("6.Realizar uma concatenacao entre duas listas\n");
     printf("7.Inverter a lista\n");
     printf("8.Cancelar\n");
     printf("\nInforme a opcao: ");
     scanf("%d", &escolha);
+    printf("\n");
     switch (escolha)
     {
         case 1:
@@ -196,10 +197,12 @@ int main()
         elemento_cabeca(lista);
         break;
         case 4:
-        printf("(!) INDISPONIVEL (!)");
-        //printf("removendo elemento %d da lista: ", 2);
-        //remover_elemento(lista, 2);
-        //printar(lista);
+        printf("Digite o numero que deseja remover: \n");
+        scanf("%d", &membro);
+        printf("removendo elemento %d da lista...\n", membro);
+        remover_elemento(lista, membro);
+        printf("lista atual: \n");
+        printar(lista);
         break;
         case 5:
         calda_lista(lista);
