@@ -75,7 +75,7 @@ stack * unir_pilhas(stack * pilha1, stack * pilha2) {
 stack * ordenar_pilha(stack * pilha) {
     int aux;
     int tamanho = tamanho_pilha(pilha);
-    for (int contador = 1; contador < tamanho; contador++) {
+    for (int j = 1; j < tamanho; j++) {
         for (int i = 0; i < tamanho - 1; i++) {
             if (pilha->elemento[i] < pilha->elemento[i + 1]) {
                 aux = pilha->elemento[i];
