@@ -1,4 +1,3 @@
-//Árvore N-ária estática
 #include <stdio.h>
 
 typedef struct arvore{

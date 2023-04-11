@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#include "lib/stack.h"
+#include "lib/stackdinamica.h"
 
 
 int main() {
@@ -13,12 +13,7 @@ int main() {
 
 
     // Definindo pilha para possivel união.
-    pilha1->topo = criar_pilha(pilha1);
-
-    if(criar_pilha(pilha) != -1) {
-        printf("nao foi possivel criar a pilha. \n");
-        return 0;
-    }
+    pilha1 = criar_pilha(pilha1);
 
     while(1)
     {
@@ -46,7 +41,7 @@ int main() {
                 fflush(stdin);
 
                 empilhar(pilha, valor);
-                printar_pilha(pilha, 0);
+                printar_pilha(pilha);
                 break;
             case 2:
                 if (pilha_vazia(pilha) == true) {
@@ -55,15 +50,15 @@ int main() {
                 }
 
                 printf("o elemento %d foi desempilhado. \n", desempilhar(pilha));
-                printar_pilha(pilha, 0);
+                printar_pilha(pilha);
                 break;      
 
             case 3:
-                printf("A pilha possui %d elementos.\n", pilha->topo + 1);
+                printf("A pilha possui %d elementos.\n", tamanho_pilha(pilha));
                 break; 
             
             case 4:
-                printar_pilha(pilha, 0);
+                printar_pilha(pilha);
                 break; 
 
             case 5:
@@ -72,18 +67,20 @@ int main() {
                 break; 
             case 6:
                 pilha = inverte_pilha(pilha);
-                printar_pilha(pilha, 0);
+                printar_pilha(pilha);
                 break;
             case 7:
-                printf("digite os valores para a segunda pilha(Max: 10): ");
+                printf("digite os valores para a segunda pilha (digite '@' para sair): ");
                 while (scanf("%d", &valor) == 1) {
                     empilhar(pilha1, valor);
                 }
                 fflush(stdin);
-                printar_pilha(unir_pilhas(pilha,pilha1), 0);
+                pilha = unir_pilhas(pilha,pilha1);
+                printar_pilha(pilha);
                 break; 
             case 8:
-                printar_pilha(ordenar_pilha(pilha), 0);
+                printf("indisponivel\n");
+                //printar_pilha(ordenar_pilha(pilha));
                 break; 
             case 0:
                 exit(0);

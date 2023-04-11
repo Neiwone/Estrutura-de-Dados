@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "stack.h"
+
+#include "lib/stack.h"
 
 int criar_pilha(stack * pilha) {
 
