@@ -16,3 +16,5 @@ void selection_sort(int * A, int n);
 
 int partition(int * A, int low, int high);
 void quick_sort(int * A, int low, int high);
+
+void shell_sort(int * A, int n);

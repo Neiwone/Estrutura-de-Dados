@@ -18,7 +18,12 @@ void swap(int * a, int * b) {
 void bubble_sort(int * A, int n) {
 
     if(n < 0) return; 
-    for (int i = 0; i < n - 1; i++) if(A[i] > A[i+1]) swap(&A[i], &A[i+1]);  
+    for (int i = 0; i < n - 1; i++) {
+        if(A[i] > A[i+1]) {
+            swap(&A[i], &A[i+1]);
+            printar_vetor(A, n);
+        }
+    }
     bubble_sort(A, n-1); 
     
 }
@@ -51,6 +56,8 @@ void insertion_sort(int * A, int n) {
         int key = A[i];
         int j = i - 1;
         while (j >= 0 && A[j] > key) {
+            printar_vetor(A, n);
+            printf("[%d] \n", key);
             A[j + 1] = A[j];
             j = j - 1;
         }
@@ -60,9 +67,9 @@ void insertion_sort(int * A, int n) {
 
 void selection_sort(int * A, int n) { 
     int min;
-    for (int i = 0; i < (n-1); i++) {
+    for (int i = 0; i < n - 1; i++) {
         min = i;
-        for (int j = (i+1); j < n; j++) if(A[j] < A[min]) min = j;
+        for (int j = i + 1; j < n; j++) if(A[j] < A[min]) min = j;
         if (i != min) swap(&A[i], &A[min]);
     }
 }
@@ -89,4 +96,15 @@ void quick_sort(int * A, int low, int high) {
         quick_sort(A, pi + 1, high);
     }
 
+}
+
+void shell_sort(int * A, int n) {
+    for (int h = n/2; h > 0; h /= 2) {
+        for (int i = h; i < n; i++) {
+            int key = A[i];
+            int j;
+            for (j = i; j >= h && A[j - h] > key; j -= h) A[j] = A[j - h];
+            A[j] = key;
+        }
+    }
 }

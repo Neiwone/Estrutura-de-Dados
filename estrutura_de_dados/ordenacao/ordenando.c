@@ -22,7 +22,8 @@ int main () {
         printf("3 - Insertion Sort\n");
         printf("4 - Selection Sort\n");
         printf("5 - Quick Sort\n");
-        printf("6 - Randomizar vetor\n");
+        printf("6 - Shell Sort\n");
+        printf("7 - Randomizar vetor\n");
         printf("0 - Sair\n\n");
         printf("opcao: ");
 
@@ -38,7 +39,6 @@ int main () {
         case 2:
             printf("numero de tentativas: %d\n", bogo_sort(A, n));
             printar_vetor(A, n);
-            
             break;
         case 3:
             insertion_sort(A, n);
@@ -53,6 +53,10 @@ int main () {
             printar_vetor(A, n);
             break;
         case 6:
+            shell_sort(A, n);
+            printar_vetor(A, n);
+            break;
+        case 7:
             shuffle(A, n);
             break;
         case 0:
