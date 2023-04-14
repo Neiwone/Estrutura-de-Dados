@@ -6,7 +6,7 @@
 
 int main () {
 
-    int A[] = {0, 1, 2, 3, 4, 5, 6, 7};
+    int A[] = {10, 1, 32, 3, 341, 5, 26, 7, 102};
     int n = sizeof(A) / sizeof(A[0]);
     srand(time(NULL));
     shuffle(A, n);
@@ -23,7 +23,9 @@ int main () {
         printf("4 - Selection Sort\n");
         printf("5 - Quick Sort\n");
         printf("6 - Shell Sort\n");
-        printf("7 - Randomizar vetor\n");
+        printf("7 - Counting Sort\n");
+        printf("8 - Radix Sort\n");
+        printf("9 - Randomizar vetor\n");
         printf("0 - Sair\n\n");
         printf("opcao: ");
 
@@ -34,29 +36,45 @@ int main () {
         switch (opcao) {
         case 1:
             bubble_sort(A, n);
+            printf("\n");
             printar_vetor(A, n);
             break;
         case 2:
             printf("numero de tentativas: %d\n", bogo_sort(A, n));
+            printf("\n");
             printar_vetor(A, n);
             break;
         case 3:
             insertion_sort(A, n);
+            printf("\n");
             printar_vetor(A, n);
             break;
         case 4:
             selection_sort(A, n);
+            printf("\n");
             printar_vetor(A, n);
             break;
         case 5:
             quick_sort(A, 0, n - 1);
+            printf("\n");
             printar_vetor(A, n);
             break;
         case 6:
             shell_sort(A, n);
+            printf("\n");
             printar_vetor(A, n);
             break;
         case 7:
+            counting_sort(A, n);
+            printf("\n");
+            printar_vetor(A, n);
+            break;
+        case 8:
+            radix_sort(A, n);
+            printf("\n");
+            printar_vetor(A, n);
+            break;
+        case 9:
             shuffle(A, n);
             break;
         case 0:

@@ -18,3 +18,9 @@ int partition(int * A, int low, int high);
 void quick_sort(int * A, int low, int high);
 
 void shell_sort(int * A, int n);
+
+void counting_sort(int * A, int n);
+
+void counting_sort_to_radix(int * A, int n, int exp);
+
+void radix_sort(int * A, int n);

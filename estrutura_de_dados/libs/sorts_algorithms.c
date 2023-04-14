@@ -51,13 +51,11 @@ int bogo_sort(int * A, int n) {
 }
 
 void insertion_sort(int * A, int n) {
-
     for (int i = 1; i < n; i++) {
         int key = A[i];
         int j = i - 1;
         while (j >= 0 && A[j] > key) {
             printar_vetor(A, n);
-            printf("[%d] \n", key);
             A[j + 1] = A[j];
             j = j - 1;
         }
@@ -107,4 +105,44 @@ void shell_sort(int * A, int n) {
             A[j] = key;
         }
     }
+}
+
+void counting_sort(int * A, int n) {
+
+    int max = A[0];
+    for (int i = 0; i < n; i++) if(A[i] > max) max = A[i];
+    
+    int output[n];
+    int * count = calloc(max, sizeof(int));
+
+    for (int i = 0; i < n; i++) count[A[i]]++;
+
+    for (int i = 0; i < max; i++) count[i + 1] += count[i];
+    
+    for (int i = 0; i < n; i++) output[--count[A[i]]] = A[i];
+    
+    for (int i = 0; i < n; i++) A[i] = output[i];
+}
+
+void counting_sort_to_radix(int * A, int n, int exp) {
+
+    
+    int output[n];
+    int count[10] = {0};
+
+    for (int i = 0; i < n; i++) count[(A[i] / exp) % 10]++;
+
+    for (int i = 1; i < n; i++) count[i] += count[i-1];
+
+    for (int i = n - 1; i >= 0; i--) output[--count[(A[i] / exp) % 10]] = A[i];
+
+    for (int i = 0; i < n; i++) A[i] = output[i];
+}
+
+void radix_sort(int * A, int n) {
+
+    int max = A[0];
+    for (int i = 0; i < n; i++) if(A[i] > max) max = A[i];
+    
+    for (int exp = 1; max / exp > 0; exp *= 10) counting_sort_to_radix(A, n, exp);
 }
