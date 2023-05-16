@@ -19,13 +19,23 @@ void bubble_sort(int * A, int n) {
 
     if(n < 0) return; 
     for (int i = 0; i < n - 1; i++) {
-        if(A[i] > A[i+1]) {
-            swap(&A[i], &A[i+1]);
-            printar_vetor(A, n);
-        }
+        if(A[i] > A[i+1]) swap(&A[i], &A[i+1]);
     }
     bubble_sort(A, n-1); 
     
+}
+
+void bubble_sortV2(int * A, int n)
+{
+    bool flag = true;
+ 
+    for (int i = 0; i < n - 1; i++) {
+        if (A[i] > A[i + 1]) {
+            swap(&A[i], &A[i+1]);
+            flag = false;
+        }
+    }
+    if (!flag) bubble_sortV2(A, n);
 }
 
 bool is_sorted(int * A, int n) {
@@ -42,33 +52,45 @@ void shuffle(int * A, int n) {
 }
  
 int bogo_sort(int * A, int n) {
-    int tentativasbogo = 0;
+    int timessorted = 0;
     while(!is_sorted(A, n)) {
         shuffle(A, n);
-        tentativasbogo+=1;
+        timessorted++;
     }
-    return tentativasbogo;
+    return timessorted;
 }
 
 void insertion_sort(int * A, int n) {
     for (int i = 1; i < n; i++) {
         int key = A[i];
-        int j = i - 1;
-        while (j >= 0 && A[j] > key) {
-            printar_vetor(A, n);
+        for (int j = i - 1; j >= 0 && A[j] > key; j--) {
             A[j + 1] = A[j];
-            j = j - 1;
+            A[j] = key;
         }
-        A[j + 1] = key;
     }
 }
 
 void selection_sort(int * A, int n) { 
-    int min;
-    for (int i = 0; i < n - 1; i++) {
-        min = i;
-        for (int j = i + 1; j < n; j++) if(A[j] < A[min]) min = j;
-        if (i != min) swap(&A[i], &A[min]);
+    for  (int i = 0; i < n - 1; i++) {
+        int min = i;
+        for(int j = i + 1; j < n; j++) if(A[j] < A[min]) min = j;
+        if(i != min) swap(&A[i], &A[min]);
+    }
+}
+
+void selection_sortV2(int * A, int n) {
+    for (int i = 0, j = n - 1; i < j; i++, j--) {
+        int min = i;
+        int max = j;
+        for (int k = i + 1; k <= j; k++)  {
+            if(A[k] > A[max]) max = k;
+            if(A[k] < A[min]) min = k;
+        }
+        if(i != min) {
+            if(i == max) max = min;
+            swap(&A[i], &A[min]);
+        }
+        if(j != max) swap(&A[j], &A[max]);
     }
 }
 

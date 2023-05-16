@@ -6,9 +6,9 @@
 
 int main () {
 
-    int A[] = {10, 1, 32, 3, 341, 5, 26, 7, 102};
+    int A[] = {12, 2, 32, 0, 3, 5, 15, 46, 7};
     int n = sizeof(A) / sizeof(A[0]);
-    srand(time(NULL));
+    srand(time(0));
     shuffle(A, n);
 
     while (1)
@@ -35,8 +35,14 @@ int main () {
 
         switch (opcao) {
         case 1:
+            printf("bubble sort: \n");
             bubble_sort(A, n);
-            printf("\n");
+            printar_vetor(A, n);
+            shuffle(A, n);
+            printf("unsorted list: \n");
+            printar_vetor(A, n);
+            printf("bubble sort with flag: \n");
+            bubble_sortV2(A, n);
             printar_vetor(A, n);
             break;
         case 2:
@@ -46,12 +52,17 @@ int main () {
             break;
         case 3:
             insertion_sort(A, n);
-            printf("\n");
             printar_vetor(A, n);
             break;
         case 4:
+            printf("selection sort: \n");
             selection_sort(A, n);
-            printf("\n");
+            printar_vetor(A, n);
+            shuffle(A, n);
+            printf("unsorted list: \n");
+            printar_vetor(A, n);
+            printf("selection sort with max and min: \n");
+            selection_sortV2(A, n);
             printar_vetor(A, n);
             break;
         case 5:
