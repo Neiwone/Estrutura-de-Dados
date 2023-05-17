@@ -16,19 +16,16 @@ void swap(int * a, int * b) {
 } 
 
 void bubble_sort(int * A, int n) {
-
     if(n < 0) return; 
     for (int i = 0; i < n - 1; i++) {
         if(A[i] > A[i+1]) swap(&A[i], &A[i+1]);
     }
-    bubble_sort(A, n-1); 
-    
+    bubble_sort(A, n-1);
 }
 
 void bubble_sortV2(int * A, int n)
 {
     bool flag = true;
- 
     for (int i = 0; i < n - 1; i++) {
         if (A[i] > A[i + 1]) {
             swap(&A[i], &A[i+1]);
@@ -72,6 +69,7 @@ void insertion_sort(int * A, int n) {
 
 void selection_sort(int * A, int n) { 
     for  (int i = 0; i < n - 1; i++) {
+        printar_vetor(A, n);
         int min = i;
         for(int j = i + 1; j < n; j++) if(A[j] < A[min]) min = j;
         if(i != min) swap(&A[i], &A[min]);
@@ -82,7 +80,8 @@ void selection_sortV2(int * A, int n) {
     for (int i = 0, j = n - 1; i < j; i++, j--) {
         int min = i;
         int max = j;
-        for (int k = i + 1; k <= j; k++)  {
+        printar_vetor(A, n);
+        for (int k = i; k <= j; k++)  {
             if(A[k] > A[max]) max = k;
             if(A[k] < A[min]) min = k;
         }
@@ -117,6 +116,8 @@ void quick_sort(int * A, int low, int high) {
     }
 
 }
+
+
 
 void shell_sort(int * A, int n) {
     for (int h = n/2; h > 0; h /= 2) {
